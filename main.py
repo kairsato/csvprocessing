@@ -5,13 +5,26 @@
 
 
 import pandas as pd
+import os
+import sys
 
-#reading in input
-filename = "input.csv"
+#defining filename
+print("Enter input filename(include file extension): ")
+filename = input()
+
+#checking if it exists and exiting if it doesn't
+if not os.path.exists(filename):
+    print("Cannot find input file "+filename, file=sys.stderr)
+    sys.exit(1)
+
+#reading data
 df = pd.read_csv(filename)
 
 #sorting both fields
 df = df.sort_values(["division", "points"], ascending=(True, True))
+
+
+
 
 print(df)
 
